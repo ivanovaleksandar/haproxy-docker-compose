@@ -1,0 +1,14 @@
+{
+  "name": "haproxy-docker-compose",
+  "author": "Aleksandar Ivanov",
+  "version": "1.0.0",
+  "description": "Node app with disable and enable routes",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": "^5.0.0"
+  },
+  "dependencies": {
+    "express": "latest"
+  }
+}

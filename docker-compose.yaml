@@ -1,0 +1,27 @@
+version: "2.1"
+services:
+  haproxy:
+    build:
+      context: ./haproxy
+    image: ivanovaleksandar/haproxy
+    ports:
+      - 8080:8080
+    command: "/bin/sh -c \"mkdir -p /var/run/haproxy && /usr/local/sbin/haproxy-systemd-wrapper -p /run/haproxy.pid -f /usr/local/etc/haproxy/haproxy.cfg -db\""
+  rsyslog:
+    build: 
+      context: ./rsyslog
+    image: ivanovaleksandar/rsyslog
+  app1:
+    build: ./app
+    image: ivanovaleksandar/nodejs-app
+    ports:
+      - 3000:3000
+    environment:
+      - APPNAME=app1
+  app2:
+    build: ./app
+    image: ivanovaleksandar/nodejs-app
+    ports:
+      - 3001:3000
+    environment:
+      - APPNAME=app2
