@@ -6,6 +6,7 @@ services:
     image: ivanovaleksandar/haproxy
     ports:
       - 8080:8080
+      - 9090:9090
     command: "/bin/sh -c \"mkdir -p /var/run/haproxy && /usr/local/sbin/haproxy-systemd-wrapper -p /run/haproxy.pid -f /usr/local/etc/haproxy/haproxy.cfg -db\""
   rsyslog:
     build: 
@@ -25,3 +26,17 @@ services:
       - 3001:3000
     environment:
       - APPNAME=app2
+  app3:
+    build: ./app
+    image: ivanovaleksandar/nodejs-app
+    ports:
+      - 3002:3000
+    environment:
+      - APPNAME=app3
+  app4:
+    build: ./app
+    image: ivanovaleksandar/nodejs-app
+    ports:
+      - 3003:3000
+    environment:
+      - APPNAME=app4
